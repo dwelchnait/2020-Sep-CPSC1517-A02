@@ -107,7 +107,7 @@ namespace ConsoleApp
         //  auto implemented properties can be used when there is NO NEED
         //      for additional processing against the incomin data
         //  NO internal private data member is required for this property
-        //  the system WILL internally generate a data rea for the data
+        //  the system WILL internally generate a data area for the data
         //  accessing the stored data (get, set) CAN ONLY be done
         //      via the property
         public decimal Width { get; set; }
@@ -140,6 +140,7 @@ namespace ConsoleApp
         //{
         //      your code
         //}
+        //NOTE: there is NO RETURN DATATYPE
 
         //constructors are OPTIONAL
         //IF a class DOES NOT have a constructor then the system
@@ -149,8 +150,63 @@ namespace ConsoleApp
         //  using a "system" constructor
 
         //IF you code a constructor, you MUST code any and all constructor(s)
-        //  needed by your class
+        //  needed by your class as used in your programming
+
+        //there are two common types of constructors:
+        //  Default constructor
+        //  Greedy constructor
+
+        //Default
+        //this version of the constructor takes NO parameters
+        //this version of the constructor usually similates the "system" constructor
+        //you CAN if you wish assign values to your class data members/properties
+        //  that are NOT the system default for the datatype
+        //this constructor is called on your behave when an instance of the class
+        //  is requested by the outside user.
+        //You CAN NOT call a constructor directly like a method.
+
+        public Window()
+        {
+            //technically numerics are set to zero when they are declared
+            //logically in this class the numeric fields should NOT be zero
+            //therefore, we will set the numeric fields to a literal not equal to zero
+
+            //one could assign value directly to private data member within the class
+            //a preferred method is to use the properties instead of the private data members
+            //  why? is that the properties MAY have validation to ensure acceptable
+            //       values exist for the data.
+            //       also, auto implemented properties have no direct private data members
+
+            Height = 0.9m;  //the assumed window height is .9 meters
+            Width = 1.2m;
+            NumberOfPanes = 1;
+        }
+
+        //Greedy Constructor
+        //takes in a value for each data member/property in the class
+        //each data member/property is assigned the appropriate incoming parameter value
+        public Window(decimal width, decimal height, int? numberofpanes, string manufacturer)
+        {
+            Width = width;
+            Height = height;
+            NumberOfPanes = numberofpanes;
+            Manufacturer = manufacturer;
+        }
 
         //Behaviours
+        //are also known as methods
+        //optional
+
+        //Area of a Window
+        public decimal WindowArea()
+        {
+            return Height * Width;
+        }
+
+        //Perimeter of a Window
+        public decimal WindowPerimeter()
+        {
+            return 2 * (Height + Width);
+        }
     }
 }
