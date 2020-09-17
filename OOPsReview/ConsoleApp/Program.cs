@@ -48,7 +48,99 @@ namespace ConsoleApp
               $"R or L {theDoor.RightOrLeft}; Material >{theDoor.Material}<"
               );
 
+            Console.WriteLine("\n\n");
+
+            UsingClasses();
             Console.ReadKey(); //when using the debugger your console window will remain open
+        }
+
+        static void UsingClasses()
+        {
+            //the purpose of this method is to calculate the cost
+            //  of painting a room
+            //the room will have several windows and walls with a single door
+            //all data for windows, walls and doors will be collected and
+            //  store in an instance of room.
+
+            //What does Room need
+            //declare a set of List<T> for the components of the Room
+            List<Wall> walls = new List<Wall>();
+            List<Door> doors = new List<Door>();
+            List<Window> windows = new List<Window>();
+            Room room = new Room(); //Default constructor
+
+            //create a reusable pointer variable to each component of the Room
+            //these pointers are created outside of the loop
+
+            Wall wall = null;
+            Door door = null;
+            Window window = null;
+
+            //collect the data for all of the walls in the room
+            //loop of prompt/input/validating for each wall
+
+            // after validation of data, create an instance of your class
+            wall = new Wall();
+            // load the incoming data into the instance of your class
+            wall.Width = 6.6m;
+            wall.Height = 3.1m;
+            // add the new instance into your collection (List<T>) to save the data
+            walls.Add(wall);
+
+            //end of loop
+
+            //assume the loop collected and stored the following
+            //pass 2
+            wall = new Wall();
+            // load the incoming data into the instance of your class
+            wall.Width = 6.6m;
+            wall.Height = 3.1m;
+            // add the new instance into your collection (List<T>) to save the data
+            walls.Add(wall);
+
+            //pass 3
+            wall = new Wall();
+            // load the incoming data into the instance of your class
+            wall.Width = 5.6m;
+            wall.Height = 3.1m;
+            // add the new instance into your collection (List<T>) to save the data
+            walls.Add(wall);
+
+            //pass 4
+            wall = new Wall();
+            // load the incoming data into the instance of your class
+            wall.Width = 5.6m;
+            wall.Height = 3.1m;
+            // add the new instance into your collection (List<T>) to save the data
+            walls.Add(wall);
+
+            //door loop
+            //prompt/input/validate
+            //store
+            //assume in this example that the literials were actually in variables
+            //door = new Door(inputWidth, inputHeight, inputRL, inputMaterial);
+            door = new Door(0.85m, 2.0m, "R", "Composite Pressed Wood");
+            doors.Add(door);
+            //end of loop
+
+            //window loop
+            //prompt/input/validate
+            //store
+            window = new Window(1.3m, 1.3m, 2, "Fancy Windows");
+            windows.Add(window);
+            //end of loop
+
+            //pass 2
+            window = new Window(1.3m, 1.3m, 2, "Fancy Windows");
+            windows.Add(window);
+
+            //at this point your would have 3 lists to load to the Room
+            room.Doors = doors;  //load the complete List<T>
+            room.Walls = walls;
+            room.Windows = windows;
+            room.Name = "Master Bedroom";
+
+
         }
     }
 }
