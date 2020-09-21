@@ -135,12 +135,61 @@ namespace ConsoleApp
             windows.Add(window);
 
             //at this point your would have 3 lists to load to the Room
+            //Room is a composite class
             room.Doors = doors;  //load the complete List<T>
-            room.Walls = walls;
-            room.Windows = windows;
+            room.Walls = walls;  //load the complete List<T>
+            room.Windows = windows;  //load the complete List<T>
             room.Name = "Master Bedroom";
 
+            //calculate the number of cans of paint needed for the room
+            //assumte the can of paint covers 27.87 sq m
 
+            //determine the area of wall surface to paint
+            //Area of the wall
+            //Area of the openings
+            //paintable surface = area of the wall - area of the openings
+            //cans = paintable surface / 27.87
+
+            //calculate the total area of the walls
+            decimal wallarea = 0.0m;
+            //foreach controls the traverse of the collection (List<T>)
+            //item is a placeholder for the instance in the collection
+            //item terminates at the end of the loop
+            foreach(Wall item in room.Walls)
+            {
+                wallarea += item.WallArea();
+            }
+
+            //calculate total area of doors
+            //for review let us use the for(int i = 0; end condition;increment){....} loop
+            decimal doorarea = 0.0m;
+            for (int i =0; i < room.Doors.Count(); i++)
+            {
+                doorarea += room.Doors[i].DoorArea();
+            }
+
+            //calculate total area of windows
+            //var datatype gets resolved at execution time
+            //does not change datatype while within the loop
+            decimal windowarea = 0.0m;
+            foreach(var item in room.Windows)
+            {
+                windowarea += item.WindowArea();
+            }
+
+            //paintable surface area
+            decimal netWallArea = wallarea - (doorarea + windowarea);
+
+            //calculate the number of cans of paint required
+            decimal cansOfPaint = netWallArea / 27.87m;
+
+            //output results
+            Console.WriteLine($"Wall area is:\t\t{wallarea:0.00}");
+            //Console.WriteLine("Wall area is:\t{0:0.00}",wallarea);
+            Console.WriteLine($"Door area is:\t\t{doorarea:0.00}");
+            Console.WriteLine($"Window area is:\t\t{windowarea:0.00}");
+            Console.WriteLine($"Net Wall area is:\t{netWallArea:0.00}");
+            Console.WriteLine($"Required number of paint cans is:\t{cansOfPaint:0.00}");
         }
     }
 }
