@@ -1,0 +1,47 @@
+﻿@* menu sample Bootstrap 4+ *@
+<div class="container">
+    <div class="navbar navbar-inverse">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top">
+            <a class="navbar-brand" href="~/HelloWorld.cshtml">
+                <strong>Bootstrap 4+</strong>
+            </a>
+            <button class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarMenuName"
+                    aria-controls="navbarMenuName" aria-expanded="false"
+                    aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenuName">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/HelloWorld.cshtml"
+                           style="color:black">Home</a>
+                    </li>
+                    @* create a drop down sub menu *@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#"
+                           id="navbarSubMenu" data-toggle="dropdown"
+                           style="color:black"
+                           aria-haspopup="true" aria-expanded="false">Samples</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarSubMenu">
+                            <a class="dropdown-item"
+                               href="~/SamplePages/TextBox.cshtml"
+                               style="color:black">TextBox and Buttons</a>
+                            <a class="dropdown-item"
+                               href="~/SamplePages/RadioButtons.cshtml"
+                               style="color:black">RadioButtons</a>
+                            <a class="dropdown-item"
+                               href="~/SamplePages/CheckBoxes.cshtml"
+                               style="color:black">CheckBoxes</a>
+                            <a class="dropdown-item"
+                               href="~/SamplePages/DroDownList.cshtml"
+                               style="color:black">Dropdownlist (Select)</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<br />
+<br />

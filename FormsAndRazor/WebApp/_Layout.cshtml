@@ -2,11 +2,25 @@
 <html>
 <head>
     <title>@Page.Title</title>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/CustomStyles.css" rel="stylesheet" />
+    @* will allow you to set specific style from your individual
+        web page to override general styling*@
     @RenderSection("head", required: false)
+
 </head>
 <body>
-    @RenderSection("banner")
-    @RenderBody()
-    @RenderSection("foot", required: false)
+    @* how to  bring in a menu that is in another file?? *@
+    @RenderPage("~/_Menu.cshtml")
+    <div class="container-fluid">
+        <div class="jumbotron">
+            @RenderSection("banner")
+        </div>
+            @RenderBody()
+            @RenderSection("foot", required: false)
+       
+    </div>
 </body>
 </html>
