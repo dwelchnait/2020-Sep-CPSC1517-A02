@@ -1,6 +1,70 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "CheckBox Sample";
+    //the 1st time through the form has yet to be created
+    //any reference to a control on the 1st time through will be null
+    //remember to initialize the associate global variable in the
+    //  else of the if(IsPost)
+    string choices = Request.Form["CheckBoxGroup"];
 }
 
 @section banner {<h3>Form Using CheckBox</h3>}
+
+@if (IsPost)
+{
+    //IsPost means your form has been displayed on the user's browser
+    //   and your control exists
+    //It does not mean that any action was done against it by the user
+    if (choices.IsEmpty())
+    {
+        <p><span style="color:firebrick">So you do not like to play games.</span></p>
+        //if no choices were made the choices string becomes null
+        //re-initialize the variable
+        choices = "";
+    }
+    else
+    {
+        //chices will be a string of values separate by a comma (default)
+        //I will need to split this string up on the commas
+        //to do so, we will use the string method .Split(delimiter)
+        //the delimiter is the character that separates your values
+        <p>
+            I see you like to use the following gaming plaform(s):
+            <ul>
+                @foreach(var item in choices.Split(','))
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        </p>
+    }
+}
+else
+{
+    choices = "";
+}
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="offset-1">
+            <label for="CheckBoxGroup">Select your favourite gaming platform(s):</label><br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="PS4" 
+                   @(Array.IndexOf(choices.Split(','),"PS4") >= 0 ? "checked" : "")/>PS4<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="PC" 
+                   @(Array.IndexOf(choices.Split(','),"PC") >= 0 ? "checked" : "")/>Computer<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="Xbox" 
+                   @(Array.IndexOf(choices.Split(','),"Xbox") >= 0 ? "checked" : "")/>XBox One<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="Switch" 
+                   @(Array.IndexOf(choices.Split(','),"Switch") >= 0 ? "checked" : "")/>Switch<br />
+            <input type="checkbox" name="CheckBoxGroup" id="CheckBoxGroup" value="Wii" 
+                   @(Array.IndexOf(choices.Split(','),"Wii") >= 0 ? "checked" : "")/>Wii<br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-5">
+            <button type="submit" name="theButton" id="theButton" value="submit"
+                    class="btn btn-primary">
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
