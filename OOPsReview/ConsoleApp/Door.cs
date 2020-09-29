@@ -18,6 +18,7 @@ namespace ConsoleApp
         private decimal _Height;
         private string _RightOrLeft;
         private decimal _Width;
+        private string testfield;
 
         public string Material
         {
