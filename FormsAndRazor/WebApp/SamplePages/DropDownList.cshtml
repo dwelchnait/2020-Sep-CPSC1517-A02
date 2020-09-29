@@ -4,3 +4,65 @@
 }
 
 @section banner {<h3>Form Using Select (DropDownList)</h3>}
+
+@if (IsPost)
+{
+    var choice = Request.Form["CodingSamples"];
+    switch (choice.ToUpper())
+    {
+        case "TEXT":
+            {
+                //to go to another page withhout using an anchor tag
+                //   use Response.Redirect("xxxxxx.cshtml")
+                //navigate from the top of the web site
+                Response.Redirect("~/SamplePages/TextBox.cshtml");
+                break;
+            }
+        case "RADIO":
+            {
+                //to go to another page withhout using an anchor tag
+                //   use Response.Redirect("xxxxxx.cshtml")
+                //the server will attach the current folder name in
+                //   in front of the file name
+                Response.Redirect("RadioButtons.cshtml");
+                break;
+            }
+        case "CHECK":
+            {
+                Response.Redirect("~/SamplePages/CheckBoxes.cshtml");
+                break;
+            }
+        default:
+            {
+                <p><span style="color:firebrick">Make a selection from the list of choices.</span></p>
+                break;
+            }
+    }
+
+}
+else
+{
+
+}
+
+<form id="theForm" method="post">
+    <div class="offset-1">
+        <label for="CodingSamples">Select the sample to view</label><br />
+        @* a single select row is created using the option tag
+            the tag has a parameter call value
+            the display text is coded between the opening and closing option tag
+
+
+            dropdownlists may contain a prompt line as the first row in the control *@
+        <select id="CodingSamples" name="CodingSamples">
+            <option value="">select ...</option>
+            <option value="Text">TextBoxes</option>
+            <option value="Radio">RadioButtons</option>
+            <option value="Check">CheckBoxes</option>
+        </select><br /><br />
+        <button type="submit" name="theButton" id="theButton" value="submit"
+                class="btn btn-info">
+            Submit
+        </button>
+    </div>
+</form>

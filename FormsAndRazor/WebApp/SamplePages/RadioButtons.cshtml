@@ -3,7 +3,7 @@
     Page.Title = "RadioButton Sample";
     //global variables
     string language = "";
-    string script = Request.Form["ScriptGroup"];
+    string script = Request.Form["ScriptGroup"]; //if no selection NULL is returned
 }
 
 @section banner {<h3>Form Using RadioButtons</h3>}
@@ -11,11 +11,13 @@
 @* setup my processing code *@
 @if (IsPost)
 {
-    language = Request.Form["LanguageGroup"];
+    language = Request.Form["LanguageGroup"]; //if no selection NULL is returned
     //did User actually select a radio button
     if (language.IsEmpty() || script.IsEmpty())
     {
         <p><span style="color:firebrick">Make a selection from both programs and coding.</span></p>
+        language = "";
+        script = "";
     }
     else
     {
