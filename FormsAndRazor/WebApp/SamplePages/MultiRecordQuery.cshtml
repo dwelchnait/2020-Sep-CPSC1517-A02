@@ -6,8 +6,8 @@
     //the data is needed in the form
     var db = Database.Open("NWDB");
     var querycommand = @"SELECT CategoryID, CategoryName
-FROM Categories
-ORDER BY CategoryName";
+                        FROM Categories
+                        ORDER BY CategoryName";
     //if you have possible multiple records being returned
     //  by your query, then, use the .Query() execution
     var ddlResults = db.Query(querycommand);
@@ -55,6 +55,12 @@ ORDER BY CategoryName";
             // <p><span style="color:green">there are @results.Count() products for the selection in category list.</span></p>
             //passing data to another page
             //data passed this way is done via the html GetHtml()
+            //syntax
+            //     pagename.ext?label=value&label2=value2.....
+            //      pagename.ext is the page
+            //      ? indicates parameter(s) to follow
+            //      parameter: label=value
+            //      & separates multiple parameters
             Response.Redirect("WebGridDemo.cshtml?cid=" + categoryselection);
         }
     }
@@ -82,6 +88,7 @@ else
                 {
                     //hold to retain the current selection inside a
                     //  ddl
+                    //test against the value property
                     if (item.CategoryID.ToString() == categoryselection)
                     {
                         <option value="@item.CategoryID" selected>@item.CategoryName</option>
