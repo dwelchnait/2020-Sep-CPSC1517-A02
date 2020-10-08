@@ -106,7 +106,7 @@
                         int.Parse(supplierid) == -1 ? null : supplierid,
                         int.Parse(categoryid) == -1 ? null : categoryid,
                         string.IsNullOrEmpty(quantityperunit) ? null : quantityperunit,
-                        string.IsNullOrEmpty(unitprice) ? null : unitprice,
+                        string.IsNullOrEmpty(unitprice) ? "0.00" : unitprice,
                         string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
                         string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
                         string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
