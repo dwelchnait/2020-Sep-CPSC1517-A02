@@ -291,8 +291,12 @@ else
                     class="btn btn-primary">
                 Submit
             </button>&nbsp;&nbsp;
+            @* formnovalidate will tell your browser not to validate HTML5 validation.
+               since validation controls are executed by Validation.IsValid, properly 
+                  implemented logic will ensure whether validation is executed or not
+                  for these this of controls*@
             <button type="submit" name="theButton" id="theButton" value="clear"
-                    class="btn btn-light">
+                    class="btn btn-light" formnovalidate>
                 Clear
             </button>
         </div>
