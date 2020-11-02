@@ -119,6 +119,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SamplePages\JobApp.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -247,6 +248,7 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -290,6 +292,13 @@
     </Compile>
     <Compile Include="SamplePages\CommonControls.aspx.designer.cs">
       <DependentUpon>CommonControls.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\JobApp.aspx.cs">
+      <DependentUpon>JobApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\JobApp.aspx.designer.cs">
+      <DependentUpon>JobApp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

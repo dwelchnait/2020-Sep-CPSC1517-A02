@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title=""  description="points to the root menu of your web page">
+    <!-- all siteMapNodes within the 1st siteMapNode are entries on your menu-->
+    <!-- self closing siteMapNodes CANNOT have a sub menu-->
+    
+    <!-- Unlike the default menu in your Sie.master, url page references MUST
+             include the file extension (.aspx) -->
+    <siteMapNode url="~/Default.aspx" title="Home" 
+                 description="optional, home page, seb site default startup page" />
+    <siteMapNode url="~/HelloWorld.aspx" title="Hello World"  description="on root menu" />
+    <!--drop down menu-->
+    <!--drop down menu items MUST exist between a SET of open/close siteMapNode tags-->
+    <siteMapNode url="" title="Samples"
+                 description="the entry on the root menu, BUT is the start of a drop down menu">
+      <!-- a drop down sub menu item of Samples-->
+      <siteMapNode url="~/SamplePages/CommonControls.aspx" title="Common Controls"
+                   description="a submenu item"/>
+      <siteMapNode url="~/SamplePages/JobApp.aspx" title="Job Application"
+                   description=""/>
+    </siteMapNode>
+    <siteMapNode url="~/Contact.aspx" title="Contact"  description="on root menu" />
+    <siteMapNode url="~/About.aspx" title="About"  description="on root menu" />
+  </siteMapNode>
+</siteMap>
