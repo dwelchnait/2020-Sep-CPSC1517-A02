@@ -1,4 +1,6 @@
-﻿<%@ Page Title="Common Controls" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CommonControls.aspx.cs" Inherits="WebApp.SamplePages.CommonControls" %>
+﻿<%@ Page Title="Common Controls" Language="C#" MasterPageFile="~/Site.Master" 
+    AutoEventWireup="true" CodeBehind="CommonControls.aspx.cs" 
+    Inherits="WebApp.SamplePages.CommonControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-md-12 text-center">

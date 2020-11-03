@@ -43,9 +43,9 @@
         </div>
         <div class="col-6">
             <asp:Button ID="Submit" runat="server" Text="Submit" 
-                class="btn btn-secondary"/>&nbsp;&nbsp;
+                class="btn btn-secondary" OnClick="Submit_Click"/>&nbsp;&nbsp;
             <asp:Button ID="Clear" runat="server" Text="Clear" 
-                class="btn btn-light"/>
+                class="btn btn-light" OnClick="Clear_Click"/>
             <br /><br />
             <asp:Label ID="MessageLabel" runat="server" ></asp:Label>
         </div>

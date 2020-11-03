@@ -67,7 +67,7 @@
                     The actual menu exists (in this example) in the default sitemap file
                             called Web.sitemap #e3f2fd--%>
 
-        <div class="navbar navbar-expand-md navbar-light" style="background-color: #c0c0c0;">
+        <div class="navbar navbar-expand-md navbar-light navbar-fixed-top" style="background-color: #c0c0c0;">
            <a class="navbar-brand" runat="server" href="~/"><strong>CPSC1517-A02</strong></a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" 
                data-target="#navbarSupportedContent" 

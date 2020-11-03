@@ -18,6 +18,8 @@
                    description="a submenu item"/>
       <siteMapNode url="~/SamplePages/JobApp.aspx" title="Job Application"
                    description=""/>
+      <siteMapNode url="~/SamplePages/ContestEntry.aspx" title="Contest Entry"
+                  description=""/>
     </siteMapNode>
     <siteMapNode url="~/Contact.aspx" title="Contact"  description="on root menu" />
     <siteMapNode url="~/About.aspx" title="About"  description="on root menu" />
