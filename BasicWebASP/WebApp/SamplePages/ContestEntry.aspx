@@ -17,7 +17,107 @@
 
         </div>
     </div>
-  
+  <%-- samples of validation controls --%>
+    <asp:RequiredFieldValidator ID="RequiredFirstName" runat="server" 
+        ErrorMessage="First name is required"
+        ControlToValidate="FirstName" SetFocusOnError="true"
+         ForeColor="Firebrick" Display="None">
+    </asp:RequiredFieldValidator>
+    <%-- left off  Display="None" surpress the auto display of the Text parameter
+        The Text parameter will display WHERE the validation control is CODED in your file
+        If you do NOT assign a value to the Text parameter, it DEFAULTS to the ErrorMessage--%>
+    <asp:RequiredFieldValidator ID="RequiredLastName" runat="server" 
+        ErrorMessage="Last name is required"
+         ControlToValidate="LastName" SetFocusOnError="true"
+       ForeColor="Firebrick" >
+    </asp:RequiredFieldValidator>
+     <asp:RequiredFieldValidator ID="RequiredStreetAddress1" runat="server" 
+        ErrorMessage="Street Address1 is required"
+         ControlToValidate="StreetAddress1" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None">
+    </asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredCity" runat="server" 
+        ErrorMessage="City is required"
+         ControlToValidate="City" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None">
+    </asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredPostalCode" runat="server" 
+        ErrorMessage="Postal Code is required"
+         ControlToValidate="PostalCode" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None">
+    </asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredEmailAddress" runat="server" 
+        ErrorMessage="Email Address is required"
+         ControlToValidate="EmailAddress" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None">
+    </asp:RequiredFieldValidator>
+    <asp:RequiredFieldValidator ID="RequiredCheckanswer" runat="server" 
+        ErrorMessage="Skill testing answer is required"
+         ControlToValidate="CheckAnswer" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None">
+    </asp:RequiredFieldValidator>
+
+    <asp:RegularExpressionValidator ID="RegExPostalCode" runat="server" 
+        ErrorMessage="Invalid Postal Code (ex. T6T6Y0)"
+        ControlToValidate="PostalCode" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None"
+        ValidationExpression="[A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9]" >
+    </asp:RegularExpressionValidator>
+    <asp:RegularExpressionValidator ID="RegExEmailAddress" runat="server" 
+        ErrorMessage="Invalid email address"
+        ControlToValidate="EmailAddress" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None"
+        ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" >
+    </asp:RegularExpressionValidator>
+
+    <%-- on the form we do NOT have a field suitable to demo the RangeValidator
+         for this example we will use the StreetAddress2 to demo the validator
+        
+        for this validator, use your Type parameter to indentify the datatype
+        for the check--%>
+    <asp:RangeValidator ID="RangeStreetAddress2" runat="server" 
+        ErrorMessage="Number must be between 0.0 and 100.0"
+        ControlToValidate="StreetAddress2" SetFocusOnError="true"
+       ForeColor="Firebrick"  Display="None"
+         MinimumValue="0.0" MaximumValue="100.0" Type="Double">
+    </asp:RangeValidator>
+
+    <%-- samples of the compare validator
+        a) check the datatype of a control
+        b) check the contents of a control to a literal value
+        c) check the contents of a control against the contents of a second control
+        
+        REMEMBER the Type parameter IS required if your datatype comparison is ANYTHING
+                 OTHER THAN a string
+        --%>
+
+    <%--  a) check the datatype of a control --%>
+    <%--<asp:CompareValidator ID="CompareCheckAnswer" runat="server" 
+        ErrorMessage="Skill testing value is not a number"
+         SetFocusOnError="true" ForeColor="Firebrick"  Display="None"
+        ControlToValidate="CheckAnswer" Operator="DataTypeCheck" Type="Integer">
+    </asp:CompareValidator>--%>
+
+    <%-- b) check the contents of a control to a literal value --%>
+    <asp:CompareValidator ID="CompareCheckAnswer" runat="server" 
+        ErrorMessage="Skill testing value is incorrect"
+         SetFocusOnError="true" ForeColor="Firebrick"  Display="None" Type="Integer"
+        ControlToValidate="CheckAnswer" Operator="Equal" ValueToCompare="15" >
+    </asp:CompareValidator>
+
+    <%--c) check the contents of a control against the contents of a second control --%>
+   <%-- <asp:CompareValidator ID="CompareCheckAnswer" runat="server" 
+        ErrorMessage="Skill testing value is not equal to Street Address2"
+         SetFocusOnError="true" ForeColor="Firebrick"  Display="None" Type="Integer"
+        ControlToValidate="CheckAnswer" Operator="Equal" ControlToCompare="StreetAddress2" >
+    </asp:CompareValidator>--%>
+
+    <div class="row">
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server"
+             CssClass="alert alert-danger"
+             HeaderText="Data entry errors. Examine your data to resolve the following concerns:"/>
+    </div>
+
     <div class="row">
         <div class ="col-md-6">
             <fieldset class="form-horizontal">
@@ -80,6 +180,8 @@
                 Add 240<br />
                 Divide by 11<br />
                 Subtract 15<br />
+                <%-- html5 validation 
+                    TextMode="Number" step="1" --%>
                 <asp:TextBox ID="CheckAnswer" runat="server" ></asp:TextBox>
             </p>
         </div>
@@ -88,7 +190,7 @@
                 <p>
                     <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />&nbsp;&nbsp;
                     <asp:Button ID="Clear" runat="server" Text="Clear" 
-                        CausesValidation="true" OnClick="Clear_Click"  />
+                        OnClick="Clear_Click"  />
                 </p>
                 <asp:Label ID="Message" runat="server" ></asp:Label><br />
                 <%-- add a control to display a collection of records similar to
