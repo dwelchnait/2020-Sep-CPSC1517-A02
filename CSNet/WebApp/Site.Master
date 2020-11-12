@@ -76,8 +76,11 @@
                     ShowStartingNode="false"/>
             </div>
         </div>
-
-        <div class="container body-content">
+        <%-- the container body-content of bootstrap tends to leave
+                large side margins on your browser page
+             change the container body-context to container-fluid
+                reduces the side margins to minimal space--%>
+        <div class="container-fluid">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />

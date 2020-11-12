@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\dummy.cs" />
+    <Compile Include="BLL\RegionController.cs" />
     <Compile Include="DAL\NorthwindSystemContext.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Region.cs" />
@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

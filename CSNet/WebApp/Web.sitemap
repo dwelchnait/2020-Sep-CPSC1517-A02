@@ -7,6 +7,8 @@
                  description="the entry on the root menu, BUT is the start of a drop down menu">
       <siteMapNode url="~/SamplePages/TestPage.aspx" title="TestPage"
                    description="a submenu item"/>
+      <siteMapNode url="~/SamplePages/SimpleQuery.aspx" title="Simple Query"
+                   description=""/>
     </siteMapNode>
     <siteMapNode url="~/Contact.aspx" title="Contact"  description="on root menu" />
     <siteMapNode url="~/About.aspx" title="About"  description="on root menu" />
