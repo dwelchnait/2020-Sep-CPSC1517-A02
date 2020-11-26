@@ -132,6 +132,7 @@
     <Content Include="Images\ClassDiagrams.png" />
     <Content Include="Images\SampleImage.png" />
     <Content Include="SamplePages\GridViewCodeBehind.aspx" />
+    <Content Include="SamplePages\SearchUsingODS.aspx" />
     <Content Include="SamplePages\SimpleQuery.aspx" />
     <Content Include="SamplePages\TestPage.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -312,6 +313,13 @@
     </Compile>
     <Compile Include="SamplePages\GridViewCodeBehind.aspx.designer.cs">
       <DependentUpon>GridViewCodeBehind.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\SearchUsingODS.aspx.cs">
+      <DependentUpon>SearchUsingODS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\SearchUsingODS.aspx.designer.cs">
+      <DependentUpon>SearchUsingODS.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\SimpleQuery.aspx.cs">
       <DependentUpon>SimpleQuery.aspx</DependentUpon>
