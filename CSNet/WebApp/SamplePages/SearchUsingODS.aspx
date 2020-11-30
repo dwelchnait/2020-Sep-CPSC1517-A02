@@ -85,7 +85,9 @@
                         </ItemStyle>
                     </asp:TemplateField>
                 </Columns>
-              
+               <EmptyDataTemplate>
+                   No data to display
+               </EmptyDataTemplate>
             </asp:GridView>
         </div>
         <div class="col-md-6">
