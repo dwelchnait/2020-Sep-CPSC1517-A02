@@ -26,22 +26,22 @@
     <asp:CompareValidator ID="CompareUnitPrice" runat="server" 
         ErrorMessage="Unit price must be dollar amount 0.00 or greater"
          Display="None" SetFocusOnError="true" ControlToValidate="UnitPrice"
-         Type="Double" Operator="GreaterThanEqual" ControlToCompare="0.00">
+         Type="Double" Operator="GreaterThanEqual"  ValueToCompare="0.00">
     </asp:CompareValidator>
     <asp:CompareValidator ID="ComparUnitsInStock" runat="server" 
         ErrorMessage="Quantity on Hand must be amount 0 or greater"
          Display="None" SetFocusOnError="true" ControlToValidate="UnitsInStock"
-         Type="Integer" Operator="GreaterThanEqual" ControlToCompare="0">
+         Type="Integer" Operator="GreaterThanEqual" ValueToCompare="0">
     </asp:CompareValidator>
     <asp:CompareValidator ID="CompareUnitsOnOrder" runat="server" 
         ErrorMessage="Quantity on Order must be amount 0 or greater"
          Display="None" SetFocusOnError="true" ControlToValidate="UnitsOnOrder"
-         Type="Integer" Operator="GreaterThanEqual" ControlToCompare="0">
+         Type="Integer" Operator="GreaterThanEqual" ValueToCompare="0">
     </asp:CompareValidator>
     <asp:CompareValidator ID="CompareReorderLevel" runat="server" 
         ErrorMessage="Reorder level must be amount 0 or greater"
          Display="None" SetFocusOnError="true" ControlToValidate="ReorderLevel"
-         Type="Integer" Operator="GreaterThanEqual" ControlToCompare="0">
+         Type="Integer" Operator="GreaterThanEqual" ValueToCompare="0">
     </asp:CompareValidator>
 
     <div class="row">
@@ -215,10 +215,10 @@
                 </tr>
                 <tr>
                     <td align="center" colspan="2">
-                        <asp:Button ID="Add" runat="server" Text="Add" />&nbsp;&nbsp;
-                        <asp:Button ID="Update" runat="server" Text="Update" />&nbsp;&nbsp;
+                        <asp:Button ID="Add" runat="server" Text="Add" height="33px" OnClick="Add_Click" width="74px" />&nbsp;&nbsp;
+                        <asp:Button ID="Update" runat="server" Text="Update" OnClick="Update_Click" />&nbsp;&nbsp;
                         <asp:Button ID="Disc" runat="server" Text="Disc." 
-                             CausesValidation="false"/>&nbsp;&nbsp;
+                             CausesValidation="false" height="33px" OnClick="Disc_Click" width="74px"/>&nbsp;&nbsp;
                     </td>
                 </tr>
             </table>
