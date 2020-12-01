@@ -100,7 +100,47 @@ namespace WebApp.SamplePages
 
         protected void Add_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                //collect the data and place into an instance of Product
+                Product item = new Product();
+                item.ProductName = ProductName.Text;
+                if (CategoryList.SelectedValue == "0")
+                {
+                    item.CategoryID = null;
+                }
+                else
+                {
+                    item.CategoryID =int.Parse(CategoryList.SelectedValue);
+                }
+                if (SupplierList.SelectedValue == "0")
+                {
+                    item.SupplierID = null;
+                }
+                else
+                {
+                    item.SupplierID = int.Parse(SupplierList.SelectedValue);
+                }
+                item.QuantityPerUnit = string.IsNullOrEmpty(QuantityPerUnit.Text) ? null : QuantityPerUnit.Text;
+                item.UnitPrice = string.IsNullOrEmpty(UnitPrice.Text) ? 0.00m : decimal.Parse(UnitPrice.Text);
+                item.UnitsInStock = string.IsNullOrEmpty(UnitsInStock.Text) ? (Int16)0 : Int16.Parse(UnitsInStock.Text);
+                item.UnitsOnOrder = string.IsNullOrEmpty(UnitsOnOrder.Text) ? (Int16)0 : Int16.Parse(UnitsOnOrder.Text);
+                item.ReorderLevel = string.IsNullOrEmpty(ReorderLevel.Text) ? (Int16)0 : Int16.Parse(ReorderLevel.Text);
+                item.Discontinued = false;
 
+                //within error handling call your BLL method
+                try
+                {
+                    ProductController sysmgr = new ProductController();
+                    int newProductID = sysmgr.Product_Add(item);
+                    ProductID.Text = newProductID.ToString();
+                    MessageLabel.Text = "Product has been added";
+                }
+                catch(Exception ex)
+                {
+                    MessageLabel.Text = GetInnerException(ex).Message;
+                }
+            }
         }
 
         protected void Update_Click(object sender, EventArgs e)
