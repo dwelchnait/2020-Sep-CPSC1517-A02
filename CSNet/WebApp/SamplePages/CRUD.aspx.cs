@@ -163,6 +163,38 @@ namespace WebApp.SamplePages
 
         protected void Disc_Click(object sender, EventArgs e)
         {
+           
+                if (string.IsNullOrEmpty(ProductID.Text))
+                {
+                    MessageLabel.Text = "Select a product to maintain from the search list";
+                }
+                else
+                {
+                    //within error handling call your BLL method
+                    try
+                    {
+                        ProductController sysmgr = new ProductController();
+                        int rowsaffected = sysmgr.Product_Discontinue(int.Parse(ProductID.Text));
+                        if (rowsaffected > 0)
+                        {
+                            MessageLabel.Text = "Product has been discontinued";
+                            Discontinued.Checked = true;
+                        }
+                        else
+                        {
+                            MessageLabel.Text = "Product is no longer on file";
+                            ProductID.Text = "";
+                        }
+                        //to refresh an ODS query within your code-behind
+                        //      issue a .DataBind() against the control that is using
+                        //      the ODS
+                        ProductList.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageLabel.Text = GetInnerException(ex).Message;
+                    }
+                }
 
         }
 

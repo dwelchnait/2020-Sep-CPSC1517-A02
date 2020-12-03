@@ -72,5 +72,71 @@ namespace NorthwindSystem.BLL
                 return item.ProductID;
             }
         }
+
+        public int Product_Update(Product item)
+        {
+            using(var context = new NorthwindSystemContext())
+            {
+                //stage of update
+                //the entire entity on the database will be updated, all fields
+                //      except the primary key
+                context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+
+                //commit of update
+                //changes the database
+                //the return value from an update commit is the rowsaffected
+                int rowsaffected = context.SaveChanges();
+
+                //return the rowsaffected
+                return rowsaffected;
+            }
+        }
+
+        public int Product_Discontinue(int productid)
+        {
+            using (var context = new NorthwindSystemContext())
+            {
+                //logic to discontinue the produce
+                int rowsaffected = 0;
+                //find the current record by primary key
+                var exists = context.Products.Find(productid);
+
+                //verify that you actually have an instance (object)
+                //   of the Product entitiy
+                if (exists == null)
+                {
+                    throw new Exception("Product no longer on file. Refresh your search.");
+                }
+                else
+                {
+                    //scenario LOGICAL DELETE
+
+                    //DO NOT rely on the user to actually set the attribute
+                    //    indicating "deletion" for you
+                    //INSTEAD do it by the program
+                    exists.Discontinued = true;
+
+                    //stage of update
+                    //a specific field on an instance can be updated WITHOUT needing
+                    //    to update the entire entity
+                    context.Entry(exists).Property("Discontinued").IsModified = true;
+
+
+                    //SCENARIO PHYSICAL DELETE
+
+                    //stage of delete
+                    //the record is physically removed from the database
+                    //context.Products.Remove(exists);
+
+                    //commit of update
+                    //changes the database
+                    //the return value from an update commit is the rowsaffected
+                    rowsaffected = context.SaveChanges();
+
+                    //return the rowsaffected
+                    return rowsaffected;
+                }
+            }
+        }
     }
 }
