@@ -102,30 +102,7 @@ namespace WebApp.SamplePages
         {
             if (Page.IsValid)
             {
-                //collect the data and place into an instance of Product
-                Product item = new Product();
-                item.ProductName = ProductName.Text;
-                if (CategoryList.SelectedValue == "0")
-                {
-                    item.CategoryID = null;
-                }
-                else
-                {
-                    item.CategoryID =int.Parse(CategoryList.SelectedValue);
-                }
-                if (SupplierList.SelectedValue == "0")
-                {
-                    item.SupplierID = null;
-                }
-                else
-                {
-                    item.SupplierID = int.Parse(SupplierList.SelectedValue);
-                }
-                item.QuantityPerUnit = string.IsNullOrEmpty(QuantityPerUnit.Text) ? null : QuantityPerUnit.Text;
-                item.UnitPrice = string.IsNullOrEmpty(UnitPrice.Text) ? 0.00m : decimal.Parse(UnitPrice.Text);
-                item.UnitsInStock = string.IsNullOrEmpty(UnitsInStock.Text) ? (Int16)0 : Int16.Parse(UnitsInStock.Text);
-                item.UnitsOnOrder = string.IsNullOrEmpty(UnitsOnOrder.Text) ? (Int16)0 : Int16.Parse(UnitsOnOrder.Text);
-                item.ReorderLevel = string.IsNullOrEmpty(ReorderLevel.Text) ? (Int16)0 : Int16.Parse(ReorderLevel.Text);
+                Product item = GetFormData();
                 item.Discontinued = false;
 
                 //within error handling call your BLL method
@@ -145,12 +122,77 @@ namespace WebApp.SamplePages
 
         protected void Update_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid)
+            {
+                if (string.IsNullOrEmpty(ProductID.Text))
+                {
+                    MessageLabel.Text = "Select a product to maintain from the search list";
+                }
+                else
+                {
+                    Product item = GetFormData();
+                    item.ProductID = int.Parse(ProductID.Text);
+                    item.Discontinued = Discontinued.Checked;
 
+                    //within error handling call your BLL method
+                    try
+                    {
+                        ProductController sysmgr = new ProductController();
+                        int rowsaffected = sysmgr.Product_Update(item);
+                        if (rowsaffected > 0)
+                        {
+                            MessageLabel.Text = "Product has been updated";
+                        }
+                        else
+                        {
+                            MessageLabel.Text = "Product is no longer on file";
+                            ProductID.Text = "";
+                        }
+                        //to refresh an ODS query within your code-behind
+                        //      issue a .DataBind() against the control that is using
+                        //      the ODS
+                        ProductList.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageLabel.Text = GetInnerException(ex).Message;
+                    }
+                }
+            }
         }
 
         protected void Disc_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected Product GetFormData()
+        {
+            //collect the data and place into an instance of Product
+            Product item = new Product();
+            item.ProductName = ProductName.Text;
+            if (CategoryList.SelectedValue == "0")
+            {
+                item.CategoryID = null;
+            }
+            else
+            {
+                item.CategoryID = int.Parse(CategoryList.SelectedValue);
+            }
+            if (SupplierList.SelectedValue == "0")
+            {
+                item.SupplierID = null;
+            }
+            else
+            {
+                item.SupplierID = int.Parse(SupplierList.SelectedValue);
+            }
+            item.QuantityPerUnit = string.IsNullOrEmpty(QuantityPerUnit.Text) ? null : QuantityPerUnit.Text;
+            item.UnitPrice = string.IsNullOrEmpty(UnitPrice.Text) ? 0.00m : decimal.Parse(UnitPrice.Text);
+            item.UnitsInStock = string.IsNullOrEmpty(UnitsInStock.Text) ? (Int16)0 : Int16.Parse(UnitsInStock.Text);
+            item.UnitsOnOrder = string.IsNullOrEmpty(UnitsOnOrder.Text) ? (Int16)0 : Int16.Parse(UnitsOnOrder.Text);
+            item.ReorderLevel = string.IsNullOrEmpty(ReorderLevel.Text) ? (Int16)0 : Int16.Parse(ReorderLevel.Text);
+            return item;
         }
     }
 }
